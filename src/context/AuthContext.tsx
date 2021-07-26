@@ -13,8 +13,8 @@ type User = {
 
 type SignInCredentials = {
     email: string;
-    password: string;
     username: string;
+    password: string;
 }
 
 type AuthContextData = {
@@ -65,7 +65,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
         if (token) {
             api.get('/me').then(response => {
-                const { email, permissions, roles } = response.data
+                const { email, username, permissions, roles } = response.data
 
                 setUser({ email, username, permissions, roles })
             })
@@ -96,8 +96,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
             
             setUser({
                 email,
-                username,
                 permissions,
+                username,
                 roles,
             })
 

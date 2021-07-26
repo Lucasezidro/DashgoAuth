@@ -45,6 +45,11 @@ export default function Home() {
 
 
   return (
+    <>
+    <Head>
+      <title>Yellow | Home</title>
+    </Head>
+
     <Flex 
       width="100vw" 
       height="100vh" 
@@ -53,9 +58,6 @@ export default function Home() {
       bg={bgBody}
     >
 
-        <Head>
-          <title>Yellow | Home</title>
-        </Head>
 
         <ButtonColorMode />
 
@@ -174,8 +176,7 @@ export default function Home() {
               </Button>
 
               <Link
-                href="/createUser"
-                passHref
+                href="/create"
                 color={linkColor}
                 align="center"
                 transition="0.3s"
@@ -191,6 +192,7 @@ export default function Home() {
         </Flex>
 
     </Flex>
+    </>
   )
 }
 
