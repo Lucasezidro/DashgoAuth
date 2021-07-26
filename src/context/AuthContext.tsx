@@ -6,6 +6,7 @@ import { api } from "../services/apiClient";
 
 type User = {
     email: string;
+    username: string;
     permissions: string[];
     roles: string[];
 }
@@ -13,6 +14,7 @@ type User = {
 type SignInCredentials = {
     email: string;
     password: string;
+    username: string;
 }
 
 type AuthContextData = {
@@ -65,7 +67,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
             api.get('/me').then(response => {
                 const { email, permissions, roles } = response.data
 
-                setUser({ email, permissions, roles })
+                setUser({ email, username, permissions, roles })
             })
             .catch(() => {
                 signOut()
@@ -73,11 +75,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
         }
     }, [])
 
-    async function signIn({ email, password }: SignInCredentials){
+    async function signIn({ email, password, username }: SignInCredentials){
         try {
             const response = await api.post('sessions', {
                 email,
                 password,
+                username,
             })
 
             const { token, refreshToken, permissions, roles } = response.data
@@ -93,6 +96,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
             
             setUser({
                 email,
+                username,
                 permissions,
                 roles,
             })
