@@ -1,7 +1,13 @@
 import { Flex } from "@chakra-ui/react";
 import Head from 'next/head'
+import { Sidebar } from "../../components/Sidebar";
 
-export default function JsCourse(){
+interface CursoProps {
+    name: string;
+
+}
+
+export default function JsCourse({name}: CursoProps){
     return(
         <>
         <Head>
@@ -9,7 +15,7 @@ export default function JsCourse(){
         </Head>
 
         <Flex>
-            JavaScript
+            <Sidebar />
         </Flex>
         </>
     )
